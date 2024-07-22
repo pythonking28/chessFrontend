@@ -1,26 +1,16 @@
-import { useEffect } from "react";
-import { io } from "socket.io-client";
+import socket from '../utils/Socket'
 
 const PlayMenu = () => {
-
-
-
-  const socket = io(process.env.REACT_APP_SOCKET)
 
   const handleConnect = () => {
 
     socket.on("connect",() => {
-      console.log("Connect Hogaya")
-    })
-
-    socket.on("disconnect", () => {
-      console.log("disconnect")
+      console.log("Connected")
     })
   }
 
-  socket.on("sid", (message) => {
-    console.log(message)
-  })
+
+
 
   return (
     <div className="mr-36">
