@@ -1,12 +1,29 @@
+import { useState, useEffect } from "react"
 import socket from '../utils/Socket'
 
+
 const PlayMenu = () => {
+  const [connected, setConnected] = useState(false)
+
+  useEffect(()=> {
+    socket.on("connect",() => {
+      console.log("Connected")
+      setConnected(true)
+    })
+
+    return () => {
+      socket.on("disconnect",()=>{
+        console.log("disconnected")
+        setConnected(false)
+      })
+    }
+  },[])
 
   const handleConnect = () => {
 
-    socket.on("connect",() => {
-      console.log("Connected")
-    })
+    if(connected){
+      socket.emit("joinGame")
+    }
   }
 
 

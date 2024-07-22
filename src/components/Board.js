@@ -12,9 +12,6 @@ const Board = () => {
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
 
-    useEffect(()=>{
-        socket.emit("joinGame")
-    },[chess])
 
     const squareHandler = () => {
 
