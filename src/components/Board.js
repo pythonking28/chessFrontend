@@ -1,4 +1,4 @@
-import {useState, useRef, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import socket from '../utils/Socket'
 import { Chess } from "chess.js"
 import Piece from './Piece'
