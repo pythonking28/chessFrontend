@@ -6,7 +6,11 @@ const piece = ({color, type, square, setSourceSquare}) => {
 
   return (
     <div>
-      <img src={`/images/${type + color}.png`} alt="" draggable={true} onDragStart={handleDragStart} />
+      { type ?
+        <img className="w-10 h-10 md:w-14 md:h-14 xl:h-19 xl:w-19" src={`/images/${type + color}.png`? `/images/${type + color}.png`: null } alt="" draggable={true} onDragStart={handleDragStart} />
+      :
+        null
+      }
     </div>
   )
 }
