@@ -11,7 +11,7 @@ const Board = ({boardReset, setBoardReset, win }) => {
     const [player, setPlayer] = useState('w')
 
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
-
+    console.log(chess.moves('a2'))
     useEffect(() => {
         if (boardReset) {
             const newChess = new Chess()
@@ -62,9 +62,9 @@ const Board = ({boardReset, setBoardReset, win }) => {
       }
 
   return (
-    <div className={`relative`}>
+    <div className={`relative lg:ml-20`} >
         {win === "d" && <div className='absolute top-1/2 left-1/2 z-10 w-auto lg:w-32 h-auto font-extrabold text-6xl text-emerald-800 -translate-x-1/2 -translate-y-1/2'> Match Drawn </div>}
-        <div className={`h-auto w-autos lg:ml-20 grid grid-cols-8 grid-row-8 justify-items-center justify-center items-center ${player === 'b' ? "rotate-180" : "rotate-0"} `}>
+        <div id="chess-board" className={`h-auto w-auto grid grid-cols-8 grid-row-8 justify-items-center justify-center items-center ${player === 'b' ? "rotate-180" : "rotate-0"} `}>
             {board?.map((boardElements, row)=>(
                 boardElements?.map((boardElement, col) => (
                     <div key={row+col} data-row={row} data-col={col} className={` w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 xl:h-19 xl:w-19 ${(row+col)%2 === 0 ? "bg-[#739552]" : "bg-[#EBECD0]" } ${player === 'b' ? "rotate-180" : "rotate-0"} flex justify-center items-center`}  onClick={squareHandler} onDrop={(e) => handleDrop(e, row, col)}
