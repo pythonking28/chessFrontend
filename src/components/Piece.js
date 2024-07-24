@@ -1,3 +1,4 @@
+import {useState} from 'react'
 const piece = ({color, type, square, setSourceSquare, win, draw}) => {
   const [touchStart, setTouchStart] = useState(null);
   let loss = "";
