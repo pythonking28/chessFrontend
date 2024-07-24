@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import socket from '../utils/Socket'
 
 
-const PlayMenu = ({setBoardReset}) => {
-  const [connected, setConnected] = useState(false)
 
+const PlayMenu = ({setBoardReset, setWin, win}) => {
+  const [connected, setConnected] = useState(false)
+  const sound = new Audio('/sounds/gameover.mp3')
 
   useEffect(()=> {
     socket.on("connect",() => {
@@ -29,6 +30,7 @@ const PlayMenu = ({setBoardReset}) => {
     socket.connect();
     socket.emit("joinGame");
     setBoardReset(true)
+    setWin("")
 
     setConnected(true)
   }
@@ -40,15 +42,20 @@ const PlayMenu = ({setBoardReset}) => {
     
   }
 
-  socket.on("win", (message) => {
-    console.log(message+" wins")
+socket.on("win", (message) => {
+
+    sound.play()
+    setWin(message)
+
+    setConnected(false)
+    if(message === "d"){
+
+      socket.disconnect("draw");
+    }
+    socket.disconnect()
     
 })
 
-socket.on("draw",(message)=>{
-  console.log(message) // TODO: set draw css
-  setConnected(false)
-})
 
 
 

@@ -16,3 +16,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.bg-radial-golden {
+  background-image: radial-gradient(ellipse farthest-corner at center, #F8E231 0%, #FFC107 100%);
+}
