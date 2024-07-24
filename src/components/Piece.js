@@ -36,6 +36,7 @@ const piece = ({color, type, square, setSourceSquare, win, draw}) => {
     const x = touch.clientX;
     const y = touch.clientY;
     const square = getTargetSquareFromPosition(x, y);
+    alert(square)
     setSourceSquare(square)
     
 
