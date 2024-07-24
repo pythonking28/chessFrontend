@@ -30,7 +30,7 @@ const piece = ({color, type, square, setSourceSquare,  win, draw}) => {
     const y = touch.clientY;
     // setTouchStart(touch);
     const square = getTargetSquareFromPosition(x, y);
-    alert(square)
+    // alert(square)
     setSource(square);
   };
   const handleTouchMove = (e) => {
