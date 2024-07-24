@@ -38,6 +38,7 @@ const piece = ({color, type, square, setSourceSquare, win, draw}) => {
     const square = getTargetSquareFromPosition(x, y);
     alert(square)
     setSourceSquare(square)
+    e.dataTransfer.setData("text", square);
     
 
   };
