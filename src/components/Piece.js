@@ -1,8 +1,10 @@
 import {useState} from 'react'
-const piece = ({color, type, square, setSourceSquare, win, draw}) => {
+const piece = ({color, type, square, setSourceSquare,  win, draw}) => {
   const [touchStart, setTouchStart] = useState(null);
   const [touchMove, setTouchMove] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [source, setSource] = useState(null)
+  const [target, setTarget] = useState(null)
   let loss = "";
 
 
@@ -24,8 +26,12 @@ const piece = ({color, type, square, setSourceSquare, win, draw}) => {
   };
   const handleTouchStart = (e) => {
     const touch = e.touches[0];
-    setTouchStart(touch);
-    setSourceSquare(square);
+    const x = touch.clientX;
+    const y = touch.clientY;
+    // setTouchStart(touch);
+    const square = getTargetSquareFromPosition(x, y);
+    alert(square)
+    setSource(square);
   };
   const handleTouchMove = (e) => {
     const touch = e.touches[0];
@@ -37,8 +43,13 @@ const piece = ({color, type, square, setSourceSquare, win, draw}) => {
     const y = touch.clientY;
     const square = getTargetSquareFromPosition(x, y);
     alert(square)
-    setSourceSquare(square)
-    e.dataTransfer.setData("text", square);
+    setTarget(square)
+    try {
+      socket.emit("move", {from: source, to: target})
+
+  } catch (error) {
+      console.error(error)
+  }
     
 
   };
